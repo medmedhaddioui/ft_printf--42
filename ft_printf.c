@@ -6,7 +6,7 @@
 /*   By: mel-hadd <mel-hadd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:58:41 by mel-hadd          #+#    #+#             */
-/*   Updated: 2023/11/24 20:25:42 by mel-hadd         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:34:29 by mel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,9 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 			count += format_type(format[++i], args);
 		else
-			count += write(-1, &format[i], 1);
+			count += write(1, &format[i], 1);
 		i++;
 	}
 	va_end(args);
 	return (count);
-}
-#include <stdio.h>
-int main ()
-{
-	
-	printf("dyalohom : %d",printf("\001\002\007\v\010\f\r\n"));
-	printf("\n");
-	ft_printf("dyali. %d",ft_printf("\001\002\007\v\010\f\r\n"));
 }
