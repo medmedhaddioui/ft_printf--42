@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_print_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hadd <mel-hadd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 14:18:31 by mel-hadd          #+#    #+#             */
-/*   Updated: 2023/11/24 14:40:52 by mel-hadd         ###   ########.fr       */
+/*   Created: 2023/11/24 18:54:43 by mel-hadd          #+#    #+#             */
+/*   Updated: 2023/11/24 20:12:37 by mel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
+#include "ft_printf.h"
 
-int	ft_printf(const char *format, ...);
-int	ft_putchar_fd(int c, int fd);
-int	ft_putstr_fd(char *s, int fd);
-int	ft_print_dec_hex(unsigned long nb, unsigned int base, char c);
-int	ft_hex_adress(unsigned long nb, unsigned int base, char c);
-
-#endif
+int ft_print_u(unsigned int nb, int base)
+{
+    int count;
+    count = 0;
+    if (nb > 9)
+    {
+		count += ft_print_u((nb / base), base);
+        count += ft_putchar_fd(nb % base + '0', 1);
+    }
+	else
+		count += ft_putchar_fd(nb % base + '0', 1);
+	return (count);
+}

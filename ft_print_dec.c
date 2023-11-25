@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hex_adress.c                                    :+:      :+:    :+:   */
+/*   ft_print_dec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hadd <mel-hadd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 14:18:02 by mel-hadd          #+#    #+#             */
-/*   Updated: 2023/11/24 18:53:17 by mel-hadd         ###   ########.fr       */
+/*   Created: 2023/11/24 18:19:34 by mel-hadd          #+#    #+#             */
+/*   Updated: 2023/11/24 18:55:16 by mel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_hex_adress(unsigned long nb, unsigned int base, char c)
+int ft_print_dec(int nb,int base)
 {
-	char	*base_hex;
-	int		count;
-
+	int count;
 	count = 0;
-	base_hex = "0123456789abcdef";
-	if (c == 'p')
+	if (nb == -2147483648)
+		return write(1 , "-2147483648", 11);
+	if (nb > 9)
+		count += ft_print_dec((nb / base), base);
+	if (nb < 0)
 	{
-		ft_putstr_fd("0x", 1);
-		count = 2;
+		nb *= -1;
+		count += ft_putchar_fd('-', 1);
+		count += ft_print_dec(nb, base);
 	}
-	c = 'x';
-	if (nb < base)
-		count += ft_putchar_fd(base_hex[nb], 1);
 	else
-	{
-		count += ft_hex_adress(nb / base, base, c);
-		count += ft_putchar_fd((base_hex[nb % base]), 1);
-	}
+		count += ft_putchar_fd(nb % base + '0', 1);
 	return (count);
 }

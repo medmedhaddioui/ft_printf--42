@@ -6,11 +6,11 @@
 /*   By: mel-hadd <mel-hadd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:58:41 by mel-hadd          #+#    #+#             */
-/*   Updated: 2023/11/24 15:08:48 by mel-hadd         ###   ########.fr       */
+/*   Updated: 2023/11/24 20:25:42 by mel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static int	format_type(char format, va_list args)
 {
@@ -22,14 +22,14 @@ static int	format_type(char format, va_list args)
 	else if (format == 's')
 		count += ft_putstr_fd(va_arg(args, char *), 1);
 	else if (format == 'd' || format == 'i')
-		count += ft_print_dec_hex(va_arg(args, int), 10, 'd');
+		count += ft_print_dec(va_arg(args, int), 10);
 	else if (format == 'u')
-		count += ft_convert_hex(va_arg (args, int), 10, 'd');
+		count += ft_print_u((unsigned int) va_arg (args, unsigned int), 10);
 	else if (format == 'x')
-		count += ft_print_dec_hex((unsigned long)va_arg(args, unsigned int), 16,
+		count += ft_print_hex((unsigned long)va_arg(args, unsigned int), 16,
 				'x');
 	else if (format == 'X')
-		count += ft_print_dec_hex((unsigned long)va_arg(args, unsigned int), 16,
+		count += ft_print_hex((unsigned long)va_arg(args, unsigned int), 16,
 				'X');
 	else if (format == 'p')
 		count += ft_hex_adress((unsigned long)va_arg(args, void *), 16, 'p');
@@ -52,7 +52,7 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 			count += format_type(format[++i], args);
 		else
-			count += write(1, &format[i], 1);
+			count += write(-1, &format[i], 1);
 		i++;
 	}
 	va_end(args);
@@ -60,9 +60,9 @@ int	ft_printf(const char *format, ...)
 }
 #include <stdio.h>
 int main ()
-
 {
-	ft_printf("%d", 0);
+	
+	printf("dyalohom : %d",printf("\001\002\007\v\010\f\r\n"));
 	printf("\n");
-	printf("%d",0);
+	ft_printf("dyali. %d",ft_printf("\001\002\007\v\010\f\r\n"));
 }
