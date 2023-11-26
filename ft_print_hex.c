@@ -6,12 +6,13 @@
 /*   By: mel-hadd <mel-hadd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:18:13 by mel-hadd          #+#    #+#             */
-/*   Updated: 2023/11/24 18:53:22 by mel-hadd         ###   ########.fr       */
+/*   Updated: 2023/11/26 11:28:13 by mel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-int	ft_print_hex(unsigned long nb, unsigned int base, char c)
+
+int	ft_print_hex(long nb, int base, char c)
 {
 	char	*base_hex;
 	int		count;

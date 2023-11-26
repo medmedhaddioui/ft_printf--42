@@ -6,7 +6,7 @@
 /*   By: mel-hadd <mel-hadd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:58:41 by mel-hadd          #+#    #+#             */
-/*   Updated: 2023/11/25 12:34:29 by mel-hadd         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:32:12 by mel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,13 @@ static int	format_type(char format, va_list args)
 	else if (format == 's')
 		count += ft_putstr_fd(va_arg(args, char *), 1);
 	else if (format == 'd' || format == 'i')
-		count += ft_print_dec(va_arg(args, int), 10);
+		count += ft_putnbr(va_arg(args, int), 10);
 	else if (format == 'u')
-		count += ft_print_u((unsigned int) va_arg (args, unsigned int), 10);
+		count += ft_print_u(va_arg(args, unsigned int), 10);
 	else if (format == 'x')
-		count += ft_print_hex((unsigned long)va_arg(args, unsigned int), 16,
-				'x');
+		count += ft_print_hex((long)va_arg(args, unsigned int), 16, 'x');
 	else if (format == 'X')
-		count += ft_print_hex((unsigned long)va_arg(args, unsigned int), 16,
-				'X');
+		count += ft_print_hex((long)va_arg(args, unsigned int), 16, 'X');
 	else if (format == 'p')
 		count += ft_hex_adress((unsigned long)va_arg(args, void *), 16, 'p');
 	else if (format == '%')
