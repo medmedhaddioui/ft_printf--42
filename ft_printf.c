@@ -6,7 +6,7 @@
 /*   By: mel-hadd <mel-hadd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:58:41 by mel-hadd          #+#    #+#             */
-/*   Updated: 2023/11/26 13:32:12 by mel-hadd         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:15:52 by mel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	ft_printf(const char *format, ...)
 			count += format_type(format[++i], args);
 		else
 			count += write(1, &format[i], 1);
-		i++;
+		if (format[i])
+			i++;
 	}
 	va_end(args);
 	return (count);
